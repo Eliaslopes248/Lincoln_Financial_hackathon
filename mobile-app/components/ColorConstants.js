@@ -1,7 +1,6 @@
 //============================================================================
 // COLOR AND STYLES-CONSTANTS
 //============================================================================
-
 export const COLOR_CONSTANTS = {
     lincoln_financial_red: "#960A2C",
     lincoln_financial_black: "#231F20",

@@ -39,9 +39,9 @@ export default function LoginTab({ onLoginSuccess }) {
             const data = await response.json();
             console.log("API RESPONSE:", data);
 
-            if (data.success === true){
+            if (data.status === 200){
                 // Find the logged in user from the response
-                const loggedInUser = data.users.find(u => u.email === loginCred.email);
+                const loggedInUser = data.session;
                 if (loggedInUser) {
                     // Store user data in context
                     login({
@@ -159,8 +159,6 @@ export default function LoginTab({ onLoginSuccess }) {
 //============================================================================
 //STYLES AND STYLES-CONSTANTS
 //============================================================================
-
-
 const styles = StyleSheet.create({
     scaffoldView: {
         flex: 1,

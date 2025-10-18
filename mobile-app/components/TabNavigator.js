@@ -4,14 +4,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLOR_CONSTANTS } from './ColorConstants';
 import { useUser } from '../contexts/UserContext';
 import LoginTab from '../tabs/LoginTab';
-
+import ChatAssistant from '../tabs/ChatAssistant';
+import { MaterialIcons } from '@expo/vector-icons';
 export default function TabNavigator() {
   const { isLoggedIn, logout } = useUser();
   const [activeTab, setActiveTab] = useState('home');
 
   const tabs = [
-    { id: 'home', label: 'Home', icon: '🏠' },
-    { id: 'profile', label: 'Profile', icon: '👤' },
+    { id: 'home',         label: 'Home',      icon: <MaterialIcons name='home' size={24} color={COLOR_CONSTANTS.lincoln_financial_red} /> },
+    { id: 'chatAssistant', label: 'Assistant', icon: <MaterialIcons name='chat' size={24} color={COLOR_CONSTANTS.lincoln_financial_red} /> },
+    { id: 'profile',      label: 'Profile',   icon: <MaterialIcons name='person' size={24} color={COLOR_CONSTANTS.lincoln_financial_red} /> },
   ];
 
   // Handle successful login
@@ -33,6 +35,7 @@ export default function TabNavigator() {
 
     // If logged in, show the selected tab content
     switch (activeTab) {
+
       case 'home':
         return (
           <View style={styles.tabContent}>
@@ -53,7 +56,13 @@ export default function TabNavigator() {
             </TouchableOpacity>
           </View>
         );
-      default:
+      
+      case "chatAssistant":
+        return (
+          <ChatAssistant/>
+        );
+
+        default:
         return (
           <View style={styles.tabContent}>
             <Text style={styles.tabTitle}>Home</Text>
@@ -82,7 +91,9 @@ export default function TabNavigator() {
               ]}
               onPress={() => setActiveTab(tab.id)}
             >
-              <Text style={styles.tabIcon}>{tab.icon}</Text>
+              <View style={styles.tabIcon}>
+                {tab.icon}
+              </View>
               <Text style={[
                 styles.tabLabel,
                 activeTab === tab.id && styles.activeTabLabel
@@ -141,8 +152,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   tabIcon: {
-    fontSize: 20,
     marginBottom: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   tabLabel: {
     fontSize: 12,

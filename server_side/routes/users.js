@@ -27,7 +27,7 @@ async function getUser(user){
             return null;
         }
 
-        return data[0];
+        return users[0];
 
     } catch (err) {
         console.error("Unexpected error:", err);
