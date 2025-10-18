@@ -1,3 +1,6 @@
 function ajaniTest(){
-    return (<h1>Ajani</h1>)
+    return (<h1>    
+        Ajani
+    
+        </h1>)
 }
